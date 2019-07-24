@@ -16,6 +16,7 @@ return [
     */
 
     'default' => env('DB_CONNECTION', 'mysql'),
+    //vai ler das variaveis de ambiente (env), se existe uma chamada db_connection, caso nao encontre, usa mysql
 
     /*
     |--------------------------------------------------------------------------
