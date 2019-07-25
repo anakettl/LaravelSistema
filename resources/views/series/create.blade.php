@@ -7,11 +7,11 @@ Adicionar Série
 @section('conteudo')
 
 
-		<a href="#" class="btn btn-dark mb-2" >Adicionar</a>
-
 		<h2>Formulário</h2>
 
 		<form method="POST">
+			@csrf
+			<!--token para evitar o envio de falsas requisições-->
 			<div class="form-group">
 				<label for="nome">Nome</label> <!--for="nome" deveria marcar a caixa de texto quando clicasse na label -->
 				<input type="text" class="form-control" name="nome">

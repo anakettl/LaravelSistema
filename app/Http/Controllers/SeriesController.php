@@ -4,6 +4,8 @@ namespace App\Http\Controllers; //o namespace deve reproduzir a arvore de direto
 
 use Illuminate\Http\Request; //esta usando a classe iluminate para a requisição
 
+use App\Serie;
+
 class SeriesController extends Controller{ //herda da classe controles algumas funcionalidades
 	public function index(Request $request){
 
@@ -23,6 +25,19 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 	{
 		
 		return view('series.create');
+	}
+
+	public function store(Request $request)
+	{
+		$nome = $request->nome;
+		//atribui o elemento enviado no formulário com o nome de "nome"
+		 $serie = new Serie();
+		//criar uma serie
+		 $serie->nome = $nome;
+		//serie nome recebe o nome da serie passado no formulario
+		var_dump($serie->save());
+		//desta serie chamar o método save
+
 	}
 	
 }
