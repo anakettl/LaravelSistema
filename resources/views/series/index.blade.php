@@ -13,7 +13,7 @@ Séries
 		<ul class="list-group">
 		<?php
 			foreach ($series as $serie ): ?> 			
-			<li class="list-group-item"> <?=$serie;?> </li>			
+			<li class="list-group-item"> {{$serie->nome}} </li>		<!--é possivel deixar dentro de duas chaves q o blade trata como codigo php-->	
 		<?php endforeach; ?>
 		</ul>
 
