@@ -15,6 +15,7 @@ class CriarTabelaSeries extends Migration
     {
         Schema::create('series', function(Blueprint $table){
 
+            $table->increments('id');
             $table->string('nome');
             //passa o tipo de dado e o nome da coluna, pode passar tbm o tamanho
 

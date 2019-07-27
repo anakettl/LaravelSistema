@@ -19,11 +19,17 @@ Séries
 		<ul class="list-group">
 		<?php
 			foreach ($series as $serie ): ?> 			
-			<li class="list-group-item"> {{$serie->nome}} </li>		<!--é possivel deixar dentro de duas chaves q o blade trata como codigo php-->	
+			<li class="list-group-item"> {{$serie->nome}}
+			<form method="post" action="/LaravelSistema/public/series/delete/{{$serie->id}}">
+				@csrf
+				@method('DELETE')
+				<button class="btn btn-danger">Excluir</button>
+				
+			</form>
+			 </li>		<!--é possivel deixar dentro de duas chaves q o blade trata como codigo php-->	
 		<?php endforeach; ?>
 		</ul>
-}
-}
+
 
 @endsection
 		

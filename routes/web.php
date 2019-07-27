@@ -12,3 +12,6 @@ Route::get('/series/create', 'SeriesController@create'); //chama o metodo listar
 
 Route::post('/series/create', 'SeriesController@store');
 //quando for usado o verbo post, vai chamar o series controller e como ação o store
+
+Route::delete('/series/delete/{id}', 'SeriesController@destroy');
+//rota pra excluir uma série, passando o id da série como parâmetro

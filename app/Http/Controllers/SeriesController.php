@@ -58,5 +58,21 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 		return redirect('/series'); //o retorno da função é a url de direcionamento
 
 	}
+
+
+
+	public function destroy(Request $request)
+	{
+		Serie::destroy($request->id);
+
+		$request->session()
+		->flash(
+			'mensagem', 
+			"Serie excluída com sucesso: "
+		);
+
+		return redirect('/series');
+		
+	}
 	
 }
