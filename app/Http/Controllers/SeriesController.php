@@ -10,14 +10,17 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 	public function index(Request $request){
 
 
-	$series= Serie::all();//listar tudo como collection;
+	$series= Serie::query()
+	->orderBy('nome')//usar o metodo query para ordenar a consulta do banco
+	->get();//para pegar o resultado da consulta
+	//all();//listar tudo como collection;
 	//$series= Serie::all(); essa linha exibe o objeto com o atributo nome q esta inserido no banco como json
-	
+	$mensagem = $request->session()->get('mensagem');
 
 
 	//return view('series.index', ['series' => $series]); //não é necessario escrever dessa forma return view(view:'series.index'); 
 
-	return view('series.index', compact('series')); //outra forma de fazer isso, se no array a chave e o valor tem o mesmo nome, pode chamar uma função do php chamada compact, essa função retorna um array
+	return view('series.index', compact('series', 'mensagem')); //outra forma de fazer isso, se no array a chave e o valor tem o mesmo nome, pode chamar uma função do php chamada compact, essa função retorna um array
 
 	//dentro do arquivo view, buscar na pasta series o index, não precisa informar a extensão
 
@@ -34,9 +37,14 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 		$nome = $request->nome;
 		//Para armazenar não é necessário criar um uma variavel e depois atribuir, isso pode ser feito pela função
 		//atribui o elemento enviado no formulário com o nome de "nome"
-		$serie = Serie::create ([
-		'nome' => $nome //precisa ser informado no serie.php como preenchido
-		]);//vira um array associativo com os valores a serem passados para a model(tabela)
+		$serie = Serie::create (
+		$request->all() //precisa ser informado no serie.php como preenchido
+		);//vira um array associativo com os valores a serem passados para a model(tabela)
+		$request->session()
+		->flash(//put( o metdo put é usado para colocar mensagens na tela, porém a mensagem fica fixa, no método flash a mensagem dura apenas uma sessão, após ser lida ela desaparece.
+			'mensagem', 
+			"Serie {$serie->id}, criada com sucesso: {$serie->nome}"
+		);
 		//  $serie = new Serie();
 		// //criar uma serie
 		//  $serie->nome = $nome;
@@ -44,7 +52,10 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 		// var_dump($serie->save());
 		//desta serie chamar o método save
 
-		echo "Serie {$serie->nome} com id {$serie->id} armazenada com sucesso";
+		//session () funciona com os metodos de sessao do php
+
+		//echo "Serie com id {$serie->id} armazenada com sucesso: {$serie->nome}";
+		return redirect('/series'); //o retorno da função é a url de direcionamento
 
 	}
 	
