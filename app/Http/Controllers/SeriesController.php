@@ -68,7 +68,8 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 		$request->session()
 		->flash(
 			'mensagem', 
-			"Serie excluída com sucesso: "
+			"Serie excluída com sucesso"
+
 		);
 
 		return redirect('/series');
