@@ -55,7 +55,7 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 		//session () funciona com os metodos de sessao do php
 
 		//echo "Serie com id {$serie->id} armazenada com sucesso: {$serie->nome}";
-		return redirect('/series'); //o retorno da função é a url de direcionamento
+		return redirect()->route('series.index'); //o retorno da função é a url de direcionamento
 
 	}
 
@@ -72,7 +72,7 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 
 		);
 
-		return redirect('/series');
+		return redirect()->route('series.index');
 		
 	}
 	

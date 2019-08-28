@@ -14,7 +14,8 @@ Séries
 	{{$mensagem}}
 	</div>
 @endif
-	<a href="/LaravelSistema/public/series/create" class="btn btn-dark mb-2" >Adicionar</a>
+	<a href="{{route('form_criar_serie')}}" class="btn btn-dark mb-2" >Adicionar</a>
+	<!--/LaravelSistema/public/series/create-->
 
 		<ul class="list-group">
 		<?php
