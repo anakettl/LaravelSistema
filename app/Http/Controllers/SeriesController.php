@@ -3,7 +3,7 @@
 namespace App\Http\Controllers; //o namespace deve reproduzir a arvore de diretorios
 
 use Illuminate\Http\Request; //esta usando a classe iluminate para a requisição
-
+use App\Http\Requests\SeriesFormRequest;
 use App\Serie;
 
 class SeriesController extends Controller{ //herda da classe controles algumas funcionalidades
@@ -32,8 +32,10 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 		return view('series.create');
 	}
 
-	public function store(Request $request)
+	public function store(SeriesFormRequest $request) //utiliza o request com as regras de validacao
 	{
+		
+
 		$nome = $request->nome;
 		//Para armazenar não é necessário criar um uma variavel e depois atribuir, isso pode ser feito pela função
 		//atribui o elemento enviado no formulário com o nome de "nome"
