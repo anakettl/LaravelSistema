@@ -12,4 +12,12 @@ class Serie extends Model{
 	protected $table = 'series';
 	public $timestamps = false; //criado para não armazenar a data de criação e data de atualização do campo
 	protected $fillable = ['nome']; //passa os atributos q são preenchidos pelo método create
+
+	//a serie se relaciona com as temporadas atraves de metodos
+
+	public function temporadas()
+	{
+		//essa classe(serie) tem muitas temporadas
+		return $this->hasMany(Temporada::class);
+	}
 }
