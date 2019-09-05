@@ -14,12 +14,12 @@ class CreateTemporadasTable extends Migration
     public function up()
     {
         Schema::create('temporadas', function (Blueprint $table) {
-            $table->bigIncrements('id_temporada');
-            $table->integer('id_serie');
+            $table->bigIncrements('id');
             $table->integer('numero');
+            $table->integer('serie_id');
 
-            $table->foreign('id_serie')
-            ->references('id_serie')
+            $table->foreign('serie_id')
+            ->references('id')
             ->on('series');
         });
     }

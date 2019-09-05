@@ -35,17 +35,23 @@ class SeriesController extends Controller{ //herda da classe controles algumas f
 	public function store(SeriesFormRequest $request) //utiliza o request com as regras de validacao
 	{
 		
-
-		$nome = $request->nome;
+		
 		//Para armazenar não é necessário criar um uma variavel e depois atribuir, isso pode ser feito pela função
-		//atribui o elemento enviado no formulário com o nome de "nome"
-		$serie = Serie::create (
-		$request->all() //precisa ser informado no serie.php como preenchido
-		);//vira um array associativo com os valores a serem passados para a model(tabela)
+		$serie = Serie::create (['nome'=> $request->nome]);
+		//vira um array associativo com os valores a serem passados para a model(tabela)
+		$qtdTemporadas = $request->qtd_temporadas;
+		for($i=1;$i <= $qtdTemporadas;$i++){
+		//faz um laço de repeticao pra criar uma temporada conforme o valor inserido no input
+			$temporada = $serie->temporadas()->create(['numero'=> $i]);
+			
+			for($j=1; $j <= $request->ep_por_temporada; $j++){
+				$episodio = $temporada->episodios()->create(['numero'=>$j]);
+			}
+		}
 		$request->session()
 		->flash(//put( o metdo put é usado para colocar mensagens na tela, porém a mensagem fica fixa, no método flash a mensagem dura apenas uma sessão, após ser lida ela desaparece.
 			'mensagem', 
-			"Serie {$serie->id}, criada com sucesso: {$serie->nome}"
+			"Serie {$serie->id},temporadas e episodios criados com sucesso: {$serie->nome}"
 		);
 		//  $serie = new Serie();
 		// //criar uma serie

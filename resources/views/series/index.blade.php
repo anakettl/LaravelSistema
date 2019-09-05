@@ -21,7 +21,12 @@ Séries
 		<?php
 			foreach ($series as $serie ): ?> 			
 			<li class="list-group-item d-flex justify-content-between align-items-center"> {{$serie->nome}}
-			<form method="post" action="/LaravelSistema/public/series/delete/{{$serie->id}}"
+
+			<span class="d-flex">
+			<a href="/series/{{$serie->id}}/temporadas" class="btn btn-info btn-sm mr-1">
+				<i class="fas fa-external-link-alt"></i>
+			</a>
+			<form method="post" action="/series/delete/{{$serie->id}}"
 				onsubmit="return confirm ('Deseja remover {{addslashes($serie->nome)}}')">
 				<!--addslashes é uma função do php para retornar uma string-->
 				@csrf
@@ -29,9 +34,8 @@ Séries
 				<button class="btn btn-danger btn-sm">
 					<i class="far fa-trash-alt"></i><!--colocada imagem do font awesome no lugar da palavra excluir-->
 				</button>
-				
-				
 			</form>
+			</span>
 			 </li>		<!--é possivel deixar dentro de duas chaves q o blade trata como codigo php-->	
 		<?php endforeach; ?>
 		</ul>

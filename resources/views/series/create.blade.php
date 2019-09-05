@@ -18,16 +18,30 @@ Adicionar Série
 @endif
 
 
-		<form method="POST">
-			@csrf
-			<!--token para evitar o envio de falsas requisições-->
-			<div class="form-group">
-				<label for="nome">Nome</label> <!--for="nome" deveria marcar a caixa de texto quando clicasse na label -->
-				<input type="text" class="form-control" name="nome">
+	<form method="POST">
+		@csrf
+		<!--token para evitar o envio de falsas requisições-->
+		<div class="row">
+			<div class="col col-8">
+				<label for="nome">Nome</label> 
+				<input type="text" class="form-control" name="nome" id="nome">
 			</div>
-		
-			<button class="btn btn-primary">Adicionar</button>
+			<div class="col col-2">
+				<label for="qtd_temporadas">Temporadas</label> 
+				<input type="number" class="form-control" name="qtd_temporadas" id="qtd_temporadas">
+			</div>
+			<div class="col col-2">
+				<label for="ep_por_temporada">Episódios</label> 
+				<input type="number" class="form-control" name="ep_por_temporada" id="ep_por_temporada">
+			</div>
 
-		</form>
+
+		</div>
+
+
+	
+		<button class="btn btn-primary mt-2" >Adicionar</button>
+
+	</form>
 		
 @endsection
